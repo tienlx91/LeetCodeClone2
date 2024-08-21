@@ -8,8 +8,12 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <header>
+        <h1>LeetCode Clone</h1>
+    </header>
     <div class="container">
         <div class="sidebar">
+            <h2>Questions</h2>
             <ul>
                 <li onclick="loadQuestion(0)">Question 1</li>
                 <li onclick="loadQuestion(1)">Question 2</li>
@@ -18,9 +22,14 @@
             </ul>
         </div>
         <div class="main">
-            <h2 id="question-title">Select a question</h2>
-            <textarea id="code-editor"></textarea>
-            <button onclick="submitCode()">Submit</button>
+            <div class="question-container">
+                <h2 id="question-title">Select a question</h2>
+                <div id="question-description">Please select a question from the sidebar to view its details.</div>
+            </div>
+            <div class="editor-container">
+                <textarea id="code-editor"></textarea>
+                <button onclick="submitCode()">Submit</button>
+            </div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>

@@ -1,18 +1,22 @@
 const questions = [
     {
         title: "Question 1: Sum of Two Numbers",
+        description: "Write a function that returns the sum of two numbers.",
         functionSignature: "function sum(a, b) {\n    // Your code here\n}"
     },
     {
         title: "Question 2: Reverse a String",
+        description: "Write a function that reverses a string.",
         functionSignature: "function reverseString(str) {\n    // Your code here\n}"
     },
     {
         title: "Question 3: Find Maximum",
+        description: "Write a function that finds the maximum number in an array.",
         functionSignature: "function findMax(arr) {\n    // Your code here\n}"
     },
     {
         title: "Question 4: Palindrome Check",
+        description: "Write a function that checks if a string is a palindrome.",
         functionSignature: "function isPalindrome(str) {\n    // Your code here\n}"
     }
 ];
@@ -29,6 +33,7 @@ window.onload = function() {
 function loadQuestion(index) {
     const question = questions[index];
     document.getElementById("question-title").innerText = question.title;
+    document.getElementById("question-description").innerText = question.description;
     editor.setValue(question.functionSignature);
 }
 

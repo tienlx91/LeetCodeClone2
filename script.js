@@ -1,26 +1,3 @@
-const questions = [
-    {
-        title: "Question 1: Sum of Two Numbers",
-        description: "Write a function that returns the sum of two numbers.",
-        functionSignature: "function sum(a, b) {\n    // Your code here\n}"
-    },
-    {
-        title: "Question 2: Reverse a String",
-        description: "Write a function that reverses a string.",
-        functionSignature: "function reverseString(str) {\n    // Your code here\n}"
-    },
-    {
-        title: "Question 3: Find Maximum",
-        description: "Write a function that finds the maximum number in an array.",
-        functionSignature: "function findMax(arr) {\n    // Your code here\n}"
-    },
-    {
-        title: "Question 4: Palindrome Check",
-        description: "Write a function that checks if a string is a palindrome.",
-        functionSignature: "function isPalindrome(str) {\n    // Your code here\n}"
-    }
-];
-
 let editor;
 
 window.onload = function() {
@@ -28,34 +5,56 @@ window.onload = function() {
         lineNumbers: true,
         mode: "javascript"
     });
+
+    fetchQuestions();
 };
 
+function fetchQuestions() {
+    fetch('http://localhost:3000/questions')
+        .then(response => response.json())
+        .then(data => {
+            window.questions = data;
+            const sidebar = document.querySelector('.sidebar ul');
+            sidebar.innerHTML = '';
+            data.forEach((question, index) => {
+                const li = document.createElement('li');
+                li.textContent = question.title;
+                li.dataset.index = index;
+                li.onclick = () => loadQuestion(index);
+                sidebar.appendChild(li);
+            });
+        });
+}
+
 function loadQuestion(index) {
-    const question = questions[index];
-    document.getElementById("question-title").innerText = question.title;
+    const question = window.questions[index];
+    const questionTitleElement = document.getElementById("question-title");
+    questionTitleElement.innerText = question.title;
+    questionTitleElement.dataset.index = index;
     document.getElementById("question-description").innerText = question.description;
     editor.setValue(question.functionSignature);
 }
 
 function submitCode() {
     const userCode = editor.getValue();
-    const testCases = [
-        { input: [1, 2], expected: 3 },
-        { input: [5, 5], expected: 10 }
-    ];
+    const questionIndex = document.getElementById("question-title").dataset.index;
+    const questionId = window.questions[questionIndex]._id;
 
-    let passed = true;
-    for (const testCase of testCases) {
-        const result = eval(`(${userCode})(${testCase.input.join(",")})`);
-        if (result !== testCase.expected) {
-            passed = false;
-            break;
-        }
-    }
+    console.log('Submitting code for question:', questionId);
 
-    if (passed) {
-        alert("All test cases passed!");
-    } else {
-        alert("Some test cases failed.");
-    }
+    fetch('http://localhost:3000/submit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ questionId, userCode })
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.result || data.error);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while submitting the code.');
+    });
 }

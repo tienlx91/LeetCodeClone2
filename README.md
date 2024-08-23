@@ -69,7 +69,7 @@ The client has requested the development of a web application that replicates th
 
 ### Constraints
 
-- **Programming Language**: Python
+- **Programming Language**: Any
 - **Development Process**: Entirely automated using AI
 - **Proof of Process**: Record the entire AI coding process on video
 

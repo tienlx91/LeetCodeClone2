@@ -1,6 +1,10 @@
 Link requirement: https://www.facebook.com/groups/binhdanhocai/posts/529352666220159/?comment_id=529368532885239
 
+![Big Idea](https://github.com/user-attachments/assets/6e829ed3-b9ee-4ac6-832a-6d9f7577cab7)
+
 Confirm scope: https://www.facebook.com/groups/binhdanhocai/posts/529352666220159/?comment_id=529368532885239&reply_comment_id=529595016195924
+
+![Confirm scope](https://github.com/user-attachments/assets/3fae1ac8-74ab-44a8-bf7c-811183321f18)
 
 Video proof: https://www.youtube.com/watch?v=BPMOzDNxLzI
 
